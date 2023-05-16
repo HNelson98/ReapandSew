@@ -6,28 +6,27 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
     //private BoxCollider2D coll;
-    //private SpriteRenderer sprite;
+    private SpriteRenderer sprite;
     //private Animator anim;
 
     private float dirX = 0f;
     private float dirY = 0f;
+    private string facing_angle = "D"; 
     [SerializeField] private float moveSpeed = 7f;
-    //[SerializeField] float rollForce = 6.0f;
-    //private bool rolling = false;
-    //private int  currentAttack = 0;
-    //private float timeSinceAttack = 0.0f;
-    //private float delayToIdle = 0.0f;
-    //private float rollDuration = 8.0f / 14.0f;
+    [SerializeField] float rollForce = 6.0f;
+    private float addSpeedX = 0f;
+    private float addSpeedY = 0f;
+    private bool rolling = false;
+    private float timeSinceAction = 0.0f;
+    private float rollDuration = 8.0f / 14.0f;
     //private float rollCurrentTime;
-
-    //private enum MovementState { idle, running, jumping, falling, attacking }
 
     // Start is called before the first frame update
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         //coll = GetComponent<BoxCollider2D>();
-        //sprite = GetComponent<SpriteRenderer>();
+        sprite = GetComponent<SpriteRenderer>();
         //anim = GetComponent<Animator>();
     }
 
@@ -36,61 +35,92 @@ public class PlayerMovement : MonoBehaviour
     {
         dirX = Input.GetAxisRaw("Horizontal");
         dirY = Input.GetAxisRaw("Vertical");
-        rb.velocity = new Vector2(dirX * moveSpeed, dirY * moveSpeed);
-        // timeSinceAttack += Time.deltaTime;
+
+        if (Input.GetMouseButtonDown(1) && timeSinceAction > rollDuration) // Roll
+        {
+            rolling = true;
+            if (dirX > 0)
+            {
+                addSpeedX += rollForce;
+            }
+            if (dirX < 0)
+            {
+                addSpeedX -= rollForce;
+            }
+            if (dirY > 0)
+            {
+                addSpeedY += rollForce;
+            }
+            if (dirY < 0)
+            {
+                addSpeedY -= rollForce;
+            }
+            
+            Invoke("ResetMovement", rollDuration);
+
+            // Reset timer
+            timeSinceAction = 0.0f;
+        }
+
+        rb.velocity = new Vector2((dirX * moveSpeed) + addSpeedX, (dirY * moveSpeed) + addSpeedY);
+        timeSinceAction += Time.deltaTime;
 
         // UpdateAnimationState();
 
     }
 
-    // private void UpdateAnimationState()
-    // {
-    //     MovementState state;
+    private void ResetMovement()
+    {
+        rolling = false;
+        addSpeedX = 0f;
+        addSpeedY = 0f;
+    }
 
-    //     if (Input.GetMouseButtonDown(0) && timeSinceAttack > 0.25f && !rolling)
-    //     {
-    //         state = MovementState.attacking;
-    //         currentAttack++;
+    private void UpdateAnimationState()
+    {
 
-    //         // Loop back to one after third attack
-    //         if (currentAttack > 3)
-    //             currentAttack = 1;
+        if (Input.GetMouseButtonDown(0) && timeSinceAction > 0.25f && !rolling) // Attack
+        {
+            // anim.Play("Player_Attack" + facing_angle);
 
-    //         // Reset Attack combo if time since last attack is too large
-    //         if (timeSinceAttack > 1.0f)
-    //             currentAttack = 1;
+            // Reset timer
+            timeSinceAction = 0.0f;
+        }
 
-    //         // Call one of three attack animations "Attack1", "Attack2", "Attack3"
-    //         anim.SetTrigger("Attack" + currentAttack);
-
-    //         // Reset timer
-    //         timeSinceAttack = 0.0f;
-    //     }
+        else if (Input.GetMouseButtonDown(1) && timeSinceAction > rollDuration) // Roll
+        {
+            // anim.Play("Player_Roll" + facing_angle);
+        }
         
-    //     else if (dirX > 0f) // Right
-    //     {
-    //         state = MovementState.running;
-    //         sprite.flipX = false;
-    //     }
-    //     else if (dirX < 0f) // Left
-    //     {
-    //         state = MovementState.running;
-    //         sprite.flipX = true;
-    //     }
-    //     else // Idle
-    //     {
-    //         state = MovementState.idle;
-    //     }
+        else if (dirX > 0f) // Right
+        {
+            facing_angle = "X";
+            // anim.Play("Player_Walking" + facing_angle);
+            sprite.flipX = false;
+        }
+        else if (dirX < 0f) // Left
+        {
+            facing_angle = "X";
+            // anim.Play("Player_Walking" + facing_angle);
+            sprite.flipX = true;
+        }
+        else if (dirY > 0f) // Up
+        {
+            
+            facing_angle = "U";
+            // anim.Play("Player_Walking" + facing_angle);
+            sprite.flipX = false;
+        }
+        else if (dirY < 0f) // Down
+        {
+            facing_angle = "D";
+            // anim.Play("Player_Walking" + facing_angle);
+            sprite.flipX = false;
+        }
 
-    //     if (rb.velocity.y > .1f) // Jump
-    //     {
-    //         state = MovementState.jumping;
-    //     }
-    //     else if (rb.velocity.y < -.1f) // Fall
-    //     {
-    //         state = MovementState.falling;
-    //     }
-
-    //     anim.SetInteger("state", (int)state);
-    // }
+        else // Idle
+        {
+            // anim.Play("Player_Idle" + facing_angle);
+        }
+    }
 }
