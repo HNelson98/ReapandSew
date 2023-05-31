@@ -13,8 +13,8 @@ TagManager:
   - Water
   - UI
   - Background
-  - 
-  - 
+  - Textures
+  - Player
   - 
   - 
   - 
@@ -47,4 +47,10 @@ TagManager:
     locked: 0
   - name: Terrain
     uniqueID: 958308097
+    locked: 0
+  - name: Textures
+    uniqueID: 1504805675
+    locked: 0
+  - name: Player
+    uniqueID: 2294286475
     locked: 0
