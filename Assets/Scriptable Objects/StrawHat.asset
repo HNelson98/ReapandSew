@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f9d299920a3a8548b4675958fcf1fee, type: 3}
+  m_Name: StrawHat
+  m_EditorClassIdentifier: 
+  title: Straw Hat
+  desc: A flimsy hat made out of straw. Good for fighting sunburns, but not much
+    else
+  baseCost: 10
