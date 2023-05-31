@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: StrawHat
   m_EditorClassIdentifier: 
   title: Straw Hat
-  desc: A flimsy hat made out of straw. Good for fighting sunburns, but not much
+  desc: A flimsy hat made out of grass. Good for fighting sunburns, but not much
     else
   baseCost: 10
