@@ -31,7 +31,7 @@ public class ShopManager : MonoBehaviour
 
     public void addGold() //simple script to add gold 
     {
-        gold++;
+        gold = gold + 10;
         goldUI.text = "Gold: " + gold.ToString();
         CheckPurchasable();
     }
