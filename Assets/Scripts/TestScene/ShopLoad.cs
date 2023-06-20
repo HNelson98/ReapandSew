@@ -10,7 +10,7 @@ public class ShopLoad : MonoBehaviour
     private PlayerMovement movement;
 
     private bool transitioning = false;
-    [SerializeField] private string sceneToLoad = "SampleScene";
+    [SerializeField] private string sceneToLoad = "ShopMenu";
     
     // Start is called before the first frame update
     void Start()
