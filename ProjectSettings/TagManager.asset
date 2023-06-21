@@ -15,7 +15,7 @@ TagManager:
   - Background
   - Textures
   - Player
-  - 
+  - Actor
   - 
   - 
   - 
@@ -53,4 +53,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 2294286475
+    locked: 0
+  - name: Actor
+    uniqueID: 3428323077
     locked: 0
