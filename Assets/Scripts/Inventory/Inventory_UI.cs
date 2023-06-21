@@ -6,8 +6,7 @@ public class Inventory_UI : MonoBehaviour
 {
     public GameObject InventoryPanel;
     public GameObject player;
-    public List<Item_Slots_UI> slots = new List<Item_Slots_UI>()
-
+    public List<Item_Slots_UI> slots = new List<Item_Slots_UI>();
 
 
     void Update()
@@ -23,7 +22,7 @@ public class Inventory_UI : MonoBehaviour
         if(!InventoryPanel.activeSelf)
         {
             InventoryPanel.SetActive(true);
-            Setup();
+            // Setup();
         }
         else
         {
@@ -31,17 +30,17 @@ public class Inventory_UI : MonoBehaviour
         }
     } 
     
-    public void Setup()
-    {
-        if(slots.Count == player.inventory.slots.Count)
-        {
-            for(int i = 0; i < slots.Count; i++)
-            {
-                if(player.inventory.slots[i].type != CollectableType.NONE)
-                {
+    // public void Setup()
+    // {
+    //     if(slots.Count == player.inventory.slots.Count)
+    //     {
+    //         for(int i = 0; i < slots.Count; i++)
+    //         {
+    //             if(player.inventory.slots[i].type != CollectableType.NONE)
+    //             {
                     
-                }
-            }
-        }
-    }
+    //             }
+    //         }
+    //     }
+    // }
 }
