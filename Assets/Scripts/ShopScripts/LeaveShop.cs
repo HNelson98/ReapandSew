@@ -7,6 +7,6 @@ public class LeaveShop : MonoBehaviour
 {
     public void TransitionScene()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("TownHub");
     }
 }
