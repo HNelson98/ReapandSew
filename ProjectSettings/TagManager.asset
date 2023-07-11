@@ -13,10 +13,10 @@ TagManager:
   - Water
   - UI
   - Background
-  - Textures
+  - Foreground
   - Player
   - Actor
-  - 
+  - Background Detail
   - 
   - 
   - 
@@ -39,21 +39,24 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Background
-    uniqueID: 972062759
-    locked: 0
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: Terrain
     uniqueID: 958308097
     locked: 0
-  - name: Textures
-    uniqueID: 1504805675
+  - name: Background
+    uniqueID: 972062759
+    locked: 0
+  - name: Background Detail
+    uniqueID: 2926136323
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0
   - name: Player
     uniqueID: 2294286475
     locked: 0
   - name: Actor
     uniqueID: 3428323077
+    locked: 0
+  - name: Foreground
+    uniqueID: 1504805675
     locked: 0

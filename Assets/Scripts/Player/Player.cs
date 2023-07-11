@@ -10,4 +10,31 @@ public class Player : MonoBehaviour
    {
       inventory = new Inventory(27);
    }
+
+   private void Update()
+   {
+      if(Input.GetKeyDown(KeyCode.E))
+      {
+         Vector3Int position = new Vector3Int((int)transform.position.x,
+            (int)transform.position.y, 0);
+
+         if(GameManager.instance.tileManager.IsInteractable(position))
+         {
+            Debug.Log("Tile is Interacable");
+         }
+      }
+   }
+
+   public void DropItem(Collectable item)
+   {
+      Vector2 spawnLocation = transform.position;
+
+      Vector2 spawnOffset = Random.insideUnitCircle * 1.25f;
+
+      Collectable droppedItem = Instantiate(item, spawnLocation + spawnOffset, Quaternion.identity);
+
+      droppedItem.rb2d.AddForce(spawnOffset * .2f, ForceMode2D.Impulse);
+
+      
+   }
 }
