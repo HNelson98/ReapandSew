@@ -25,6 +25,8 @@ public class PlayerMovement : MonoBehaviour
     private float rollDuration = 8.0f / 14.0f;
     private float attackDuration = 0.25f;
 
+    public Animator animator; 
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -70,18 +72,27 @@ public class PlayerMovement : MonoBehaviour
             if (facing_angle == "X" && sprite.flipX == false) // Right
             {
                 index = 0;
+
+                
+
             }
             if (facing_angle == "X" && sprite.flipX == true) // Left
             {
                 index = 1;
+
+                
             }
             if (facing_angle == "U") // Up
             {
                 index = 2;
+
+                
             }
             if (facing_angle == "D") // Down
             {
                 index = 3;
+
+                
             }
 
             transform.GetChild(index).gameObject.SetActive(true);
@@ -134,12 +145,16 @@ public class PlayerMovement : MonoBehaviour
         {
             facing_angle = "X";
             // anim.Play("Player_Walking" + facing_angle);
+            animator.SetFloat("HorizontalSpeed", Mathf.Abs(dirX));
+
             sprite.flipX = false;
         }
         else if (dirX < 0f) // Left
         {
             facing_angle = "X";
             // anim.Play("Player_Walking" + facing_angle);
+            animator.SetFloat("HorizontalSpeed", Mathf.Abs(dirX));
+
             sprite.flipX = true;
         }
         else if (dirY > 0f) // Up
@@ -147,17 +162,23 @@ public class PlayerMovement : MonoBehaviour
             
             facing_angle = "U";
             // anim.Play("Player_Walking" + facing_angle);
+            animator.SetFloat("VerticalSpeed", Mathf.Abs(dirY));
+
             sprite.flipX = false;
         }
         else if (dirY < 0f) // Down
         {
             facing_angle = "D";
             // anim.Play("Player_Walking" + facing_angle);
+            animator.SetFloat("VerticalSpeed", dirY);
+            
             sprite.flipX = false;
         }
 
         else // Idle
         {
+                animator.SetFloat("VerticalSpeed", dirY);
+                animator.SetFloat("HorizontalSpeed", dirX);
             // anim.Play("Player_Idle" + facing_angle);
         }
     }
