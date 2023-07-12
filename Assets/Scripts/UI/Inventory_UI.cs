@@ -57,7 +57,7 @@ public class Inventory_UI : MonoBehaviour
         {
             player.DropItem(itemToDrop);
             player.inventory.Remove(slotID);
-            Refresh(); 
+            Refresh();
         }
         
     }
